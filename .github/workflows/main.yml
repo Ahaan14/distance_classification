@@ -1,0 +1,22 @@
+name: Run Tests
+
+on: [push]  # Trigger the workflow on every push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'  # Specify the Python version
+
+      - name: Install dependencies
+        run: |
+          pip install numpy pandas scikit-learn
+
+      - name: Run test script
+        run: python test_script.py
